@@ -8,5 +8,6 @@ router.post('/login', UserHandler.login);
 router.put('/:id', UserHandler.update);
 router.get('/:id', UserHandler.getUser);
 router.get('/', UserHandler.getUsers);
+router.post('/logout', UserHandler.logout);
 
 module.exports = router;
