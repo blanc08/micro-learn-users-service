@@ -1,9 +1,17 @@
 const User = require('../../../models/User');
 
 module.exports = async (req, res) => {
-  const users = await User.findAll({
+  const userIds = req.query.user_ids || [];
+
+  const sqlOptions = {
     attributes: ['id', 'name', 'email', 'profession', 'avatar'],
-  });
+  };
+
+  if (userIds.length) {
+    sqlOptions.where = { id: userIds };
+  }
+
+  const users = await User.findAll(sqlOptions);
 
   if (!users) {
     return res
